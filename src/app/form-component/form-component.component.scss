@@ -1,0 +1,22 @@
+.example-card {
+  background-color: gainsboro;
+  width: 300px;
+  margin-bottom: 10px;
+}
+
+md-chip {
+  margin-bottom: 5px;
+}
+
+iframe {
+  margin-top: 10px;
+}
+
+md-card {
+  md-card-actions {
+    button {
+      left: calc(100% - 90px);
+    }
+  }
+
+}
