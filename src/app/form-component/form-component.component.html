@@ -1,3 +1,17 @@
+<div class="container-fluid">
+  <form [formGroup]="speechForm">
+    <!--<md-input-container>-->
+      <!--<input mdInput type="text" class="form-control border-input" name="txtSpeechSearchMovieName"-->
+             <!--id="txtSpeechSearchMovieName" value=""-->
+             <!--placeholder="Click below button and then say something!!!" formControlName="speechData">-->
+    <!--</md-input-container>-->
+    <!--<button md-raised-button color="accent" (click)="activateSpeechSearchMovie()">-->
+      <!--Enable Speech Search-->
+    <!--</button>-->
+    <div style="font-size: 25px"><b>{{speechData}}</b></div>
+  </form>
+</div>
+<hr/>
 <div class="form">
   <form [formGroup]="myGreatForm" novalidate *ngIf="formIsActive" (ngSubmit)="sendToServer(myGreatForm.value)">
     <md-select placeholder="Type" formControlName="type">
@@ -6,7 +20,9 @@
     <md-input-container>
       <input mdInput placeholder="What would you like?" formControlName="query"/>
     </md-input-container>
-    <button md-raised-button color="accent" type="submit" [disabled]="!myGreatForm.valid">Submit</button>
+    <spinner-button [text]="'Submit'" [working]="firstButton"
+                    (click)="sendToServer(myGreatForm.value)"></spinner-button>
+    <!--<button md-raised-button color="accent" type="submit" [disabled]="!myGreatForm.valid">Submit</button>-->
   </form>
 </div>
 <div class="list" *ngIf="list">
@@ -28,10 +44,25 @@
   </md-card>
 </div>
 <div class="map" *ngIf="map">
-  <md-chip-list>
-    <md-chip>From A to B: <b>{{disctance.first.distance}}</b> km will take <b>{{disctance.first.time}} mins</b></md-chip>
-    <br />
-    <md-chip>From B to C: <b>{{disctance.second.distance}}</b> km will take <b>{{disctance.second.time}} mins</b></md-chip>
-  </md-chip-list>
-  <iframe src="https://www.google.com/maps/embed?pb=!1m34!1m12!1m3!1d13519.04665598063!2d34.78158013322292!3d32.10272654741435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m19!3e0!4m5!1s0x151d4bf67f442b79%3A0x13941e3c179c7721!2zSGFUYSdhcnVjaGEgNSwgVGVsIEF2aXYtWWFmbywg0JjQt9GA0LDQuNC70Yw!3m2!1d32.097536999999996!2d34.7764593!4m5!1s0x151d4bf5069206ff%3A0x8de56f3e396b2108!2sFu+Sushi%2C+Yermiyahu+Street%2C+Tel+Aviv-Yafo%2C+Israel!3m2!1d32.094704899999996!2d34.776814!4m5!1s0x151d4965df760bfb%3A0x59bd1a3ce25e6def!2sTel+Aviv+University%2C+Tel+Aviv-Yafo%2C+Israel!3m2!1d32.1133141!2d34.8043877!5e0!3m2!1sru!2s!4v1490132555337" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+  <div>
+    <md-chip-list>
+      <md-chip>From A to B: <b>{{disctance.first.distance}}</b> km will take <b>{{disctance.first.time}} mins</b>
+      </md-chip>
+      <br/>
+      <md-chip>From B to C: <b>{{disctance.second.distance}}</b> km will take <b>{{disctance.second.time}} mins</b>
+      </md-chip>
+    </md-chip-list>
+    <button md-raised-button class="share" color="accent" (click)="playSong()">
+      <md-icon>play_arrow</md-icon>
+    </button>
+    <audio autoplay *ngIf="play">
+      <source src="../../song/song.mp3" type="audio/mpeg">
+    </audio>
+    <button md-raised-button class="play" color="accent" (click)="popSnackbar()">
+      <md-icon>share</md-icon>
+    </button>
+  </div>
+  <iframe
+    src="https://www.google.com/maps/embed?pb=!1m34!1m12!1m3!1d13519.04665598063!2d34.78158013322292!3d32.10272654741435!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!4m19!3e0!4m5!1s0x151d4bf67f442b79%3A0x13941e3c179c7721!2zSGFUYSdhcnVjaGEgNSwgVGVsIEF2aXYtWWFmbywg0JjQt9GA0LDQuNC70Yw!3m2!1d32.097536999999996!2d34.7764593!4m5!1s0x151d4bf5069206ff%3A0x8de56f3e396b2108!2sFu+Sushi%2C+Yermiyahu+Street%2C+Tel+Aviv-Yafo%2C+Israel!3m2!1d32.094704899999996!2d34.776814!4m5!1s0x151d4965df760bfb%3A0x59bd1a3ce25e6def!2sTel+Aviv+University%2C+Tel+Aviv-Yafo%2C+Israel!3m2!1d32.1133141!2d34.8043877!5e0!3m2!1sru!2s!4v1490132555337"
+    width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
 </div>

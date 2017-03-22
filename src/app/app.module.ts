@@ -6,11 +6,16 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { FormComponentComponent } from './form-component/form-component.component';
 import {MaterialModule} from "@angular/material";
+import { SpinnerButtonComponent } from './spinner-button/spinner-button.component';
+import {SpeechRecognitionService} from "./speech-service/speach-recognition.service";
+import { SpeechComponentComponent } from './speech-component/speech-component.component';
 
 @NgModule({
   declarations: [
     AppComponent,
-    FormComponentComponent
+    FormComponentComponent,
+    SpinnerButtonComponent,
+    SpeechComponentComponent
   ],
   imports: [
     BrowserModule,
@@ -19,7 +24,7 @@ import {MaterialModule} from "@angular/material";
     ReactiveFormsModule,
     HttpModule
   ],
-  providers: [],
+  providers: [SpeechRecognitionService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
